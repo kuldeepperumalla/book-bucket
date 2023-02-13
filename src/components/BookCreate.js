@@ -11,7 +11,8 @@ function BookCreate({onCreate}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         onCreate(title)
-        setTitle('')
+        setTitle('');
+
     }
     
     return <div className="book-create">
@@ -22,6 +23,7 @@ function BookCreate({onCreate}) {
             <button className="button" >Submit</button>
         </form>
     </div>
+    
 }
 
 export default BookCreate

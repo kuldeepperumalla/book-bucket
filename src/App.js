@@ -1,25 +1,33 @@
-import { useState } from "react";
-import BookCreate from "./components/BookCreate"
+import {  useState } from "react";
+import BookCreate from "./components/BookCreate";
+import BookList from "./components/BookList";
+
 
 function App(){
     const [books, setBooks] = useState([]);
 
     const createBook= (title) =>{
-        console.log('this is the title of the book : ',title);
-        const updatedBooks = [...books, title];
+         const element = document.getElementById('book-app');
+    if (element) {
+      // 👇 Will scroll smoothly to the top of the next section
+      element.scrollIntoView({
+        behavior: "smooth",
+    
+      });
+    }
+  
+        const updatedBooks = [...books, {id: Math.round(Math.random() * 9999), title}];
         setBooks(updatedBooks)
     }
 
-    const renderedBooks =  books.map((book, i) => {
-        return <li key={i}>{book}</li>
-    })
+    // const renderedBooks =  books.map((book, i) => {
+    //     return <li key={i}> {book.title} {book.id}</li>
+    // })
 
     return (
-      <div>
-        <BookCreate onCreate={createBook} />
-        <ul>
-          <li>{renderedBooks} </li>
-        </ul>
+      <div className="app" >
+        <BookList books={books} />
+        <BookCreate  onCreate={createBook} />
       </div>
     );
 }
