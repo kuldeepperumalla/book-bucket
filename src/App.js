@@ -11,7 +11,7 @@ const editBookById = (id, newTitle) => {
         if(book.id === id){
             return {...book, title:newTitle}
         }
-        return {book};
+        return book;
     })
     setBooks(updatedBook)
 }
