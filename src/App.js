@@ -1,15 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState, useRef} from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
+import axios from "axios";
 
 function App() {
   const [books, setBooks] = useState([]);
+const fetchBooks = async() => {
+  const res = await axios.get("http://localhost:3001/books/");
+  setBooks(res.data)
+}
 
+useEffect(()=>{
+  fetchBooks();
+},[])
+
+    const msgEndRef = useRef(null);
+    useEffect(() => {
+      msgEndRef.current?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, []);
 //   Edit Book
-const editBookById = (id, newTitle) => {
+const editBookById = async (id, newTitle) => {
+
+  const request = await axios.put(`http://localhost:3001/books/${id}`, {title:newTitle});
     const updatedBook = books.map((book) => {
         if(book.id === id){
-            return {...book, title:newTitle}
+            return {...book, ...request.data}
         }
         return book;
     })
@@ -17,28 +34,27 @@ const editBookById = (id, newTitle) => {
 }
 
 //   Delete Books
-const deleteBooksById = (id) => {
+const deleteBooksById = async (id) => {
+
+   await axios.delete(`http://localhost:3001/books/${id}`);
     const updatedBooks = books.filter((book)=>{
         return book.id !== id;
     });
     setBooks(updatedBooks);
 }
 //   Create Books
-  const createBook = (title) => {
-    const element = document.getElementById("book-app");
-    if (element) {
-      // 👇 Will scroll smoothly to the top of the next section
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-
+  const createBook = async(title) => {
+    // axios request
+    const response = await axios.post("http://localhost:3001/books", {
+      title:title
+    });
     const updatedBooks = [
-      ...books,
-      { id: Math.round(Math.random() * 9999), title },
+      ...books, response.data
     ];
     setBooks(updatedBooks);
+
   };
+
 
   // const renderedBooks =  books.map((book, i) => {
   //     return <li key={i}> {book.title} {book.id}</li>
@@ -47,7 +63,7 @@ const deleteBooksById = (id) => {
   return (
     <div className="app">
         <h1>Reading List</h1>
-      <BookList onEdit={editBookById} books={books} onDelete={deleteBooksById}/>
+      <BookList onCreate ={createBook} onEdit={editBookById} books={books} onDelete={deleteBooksById}/>
       <BookCreate onCreate={createBook} />
     </div>
   );

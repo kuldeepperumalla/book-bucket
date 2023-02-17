@@ -1,11 +1,9 @@
 import BookShow from "./BookShow";
-import { useEffect, useRef } from "react";
+import '../index.css'
 
 function BookList({ books, onDelete, onEdit}) {
-  const msgEndRef = useRef(null);
-  useEffect(() => {
-    msgEndRef.current?.scrollIntoView({ behavior: "smooth", bottom: '0' });
-  }, [books]);
+
+
   const renderedBooks = books.map((book) => {
     return <BookShow onEdit={onEdit} onDelete={onDelete} key={book.id} book={book} />;
   });
@@ -13,7 +11,8 @@ function BookList({ books, onDelete, onEdit}) {
   return (
     <div className="book-list">
       {renderedBooks}
-      <div ref={msgEndRef} />
+      <div />
+      <div id="ref"></div>
     </div>
   );
 }

@@ -1,5 +1,4 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 function BookCreate({onCreate}) {
 
     const [title, setTitle] = useState('');
@@ -15,6 +14,11 @@ function BookCreate({onCreate}) {
 
     }
     
+      useEffect(() => {
+        document.getElementById("ref").scrollIntoView({
+          behavior: "smooth",
+        });
+      }, [title]);
     return <div className="book-create">
         <h3>Add a Book</h3>
         <form onSubmit={handleSubmit}>
