@@ -1,40 +1,8 @@
 {
   "books": [
     {
-      "title": "we",
-      "id": 29
-    },
-    {
-      "title": "sds",
-      "id": 32
-    },
-    {
-      "title": "ds",
-      "id": 33
-    },
-    {
-      "title": "sd",
-      "id": 34
-    },
-    {
-      "title": "sd",
-      "id": 35
-    },
-    {
       "title": "",
-      "id": 36
-    },
-    {
-      "title": "",
-      "id": 37
-    },
-    {
-      "title": "sd",
-      "id": 38
-    },
-    {
-      "title": "sd",
-      "id": 39
+      "id": 12
     }
   ]
 }

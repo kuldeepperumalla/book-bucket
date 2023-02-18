@@ -4,6 +4,9 @@ function BookCreate({onCreate}) {
     const [title, setTitle] = useState('');
 
     const handleChange = (event) => {
+        if((event.target.value)===""){
+            alert("")
+        }
         setTitle(event.target.value)
     }
     
@@ -13,9 +16,9 @@ function BookCreate({onCreate}) {
         setTitle('');
 
     }
-    
-      useEffect(() => {
-        document.getElementById("ref").scrollIntoView({
+    useEffect(() => {
+          const element = document.getElementById("ref")
+        element.lastElementChild.scrollIntoView({
           behavior: "smooth",
         });
       }, [title]);

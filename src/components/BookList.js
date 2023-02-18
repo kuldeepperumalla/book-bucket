@@ -9,10 +9,9 @@ function BookList({ books, onDelete, onEdit}) {
   });
 
   return (
-    <div className="book-list">
+    <div id="ref" className="book-list">
       {renderedBooks}
-      <div />
-      <div id="ref"></div>
+
     </div>
   );
 }
