@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/book-bucket/static/css/main.08a7fdad.css",
+    "main.js": "/book-bucket/static/js/main.0ff767af.js",
+    "index.html": "/book-bucket/index.html",
+    "main.08a7fdad.css.map": "/book-bucket/static/css/main.08a7fdad.css.map",
+    "main.0ff767af.js.map": "/book-bucket/static/js/main.0ff767af.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.08a7fdad.css",
+    "static/js/main.0ff767af.js"
+  ]
+}
