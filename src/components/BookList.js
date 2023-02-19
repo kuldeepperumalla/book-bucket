@@ -1,7 +1,7 @@
 import BookShow from "./BookShow";
 import '../index.css'
 
-function BookList({ books, onDelete, onEdit}) {
+function BookList({msgRef, books, onDelete, onEdit}) {
 
 
   const renderedBooks = books.map((book) => {
@@ -11,7 +11,7 @@ function BookList({ books, onDelete, onEdit}) {
   return (
     <div id="ref" className="book-list">
       {renderedBooks}
-
+<div ref={msgRef} ></div>
     </div>
   );
 }

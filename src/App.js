@@ -19,7 +19,7 @@ useEffect(()=>{
       msgEndRef.current?.scrollIntoView({
         behavior: "smooth",
       });
-    }, []);
+    }, [books]);
 //   Edit Book
 const editBookById = async (id, newTitle) => {
 
@@ -63,7 +63,7 @@ const deleteBooksById = async (id) => {
   return (
     <div className="app">
         <h1>Reading List</h1>
-      <BookList onCreate ={createBook} onEdit={editBookById} books={books} onDelete={deleteBooksById}/>
+      <BookList msgRef={msgEndRef} onCreate ={createBook} onEdit={editBookById} books={books} onDelete={deleteBooksById}/>
       <BookCreate onCreate={createBook} />
     </div>
   );
