@@ -3,58 +3,62 @@ import axios from "axios";
 
 const BooksContext = createContext();
 
-function Provider({children}){
-    const [books, setBooks] = useState([]);
+function Provider({ children }) {
+  const [books, setBooks] = useState([]);
 
-    const fetchBooks = async () => {
-      const res = await axios.get("http://localhost:3001/books/");
-      setBooks(res.data);
-    };
+  const fetchBooks = async () => {
+    const response = await axios.get("http://localhost:3001/books");
 
-const editBookById = async (id, newTitle) => {
-  const request = await axios.put(`http://localhost:3001/books/${id}`, {
-    title: newTitle,
-  });
-  const updatedBook = books.map((book) => {
-    if (book.id === id) {
-      return { ...book, ...request.data };
-    }
-    return book;
-  });
-  setBooks(updatedBook);
-};
+    setBooks(response.data);
+  };
+  
+  const editBookById = async (id, newTitle) => {
+    const response = await axios.put(`http://localhost:3001/books/${id}`, {
+      title: newTitle,
+    });
 
-//   Delete Books
-const deleteBooksById = async (id) => {
-  await axios.delete(`http://localhost:3001/books/${id}`);
-  const updatedBooks = books.filter((book) => {
-    return book.id !== id;
-  });
-  setBooks(updatedBooks);
-};
-//   Create Books
-const createBook = async (title) => {
-  // axios request
-  const response = await axios.post("http://localhost:3001/books", {
-    title: title,
-  });
-  const updatedBooks = [...books, response.data];
-  setBooks(updatedBooks);
-};
+    const updatedBooks = books.map((book) => {
+      if (book.id === id) {
+        return { ...book, ...response.data };
+      }
 
-const valueToShare = {
+      return book;
+    });
+
+    setBooks(updatedBooks);
+  };
+
+  //   Delete Books
+  const deleteBookById = async (id) => {
+    await axios.delete(`http://localhost:3001/books/${id}`);
+    const updatedBooks = books.filter((book) => {
+      return book.id !== id;
+    });
+    setBooks(updatedBooks);
+  };
+  //   Create Books
+  const createBook = async (title) => {
+    // axios request
+    const response = await axios.post("http://localhost:3001/books", {
+      title,
+    });
+    const updatedBooks = [...books, response.data];
+    setBooks(updatedBooks);
+  };
+
+  const valueToShare = {
     books,
-    deleteBooksById,
+    deleteBookById,
     editBookById,
     createBook,
-    fetchBooks
-};
-    
-    return (
-        <BooksContext.Provider value={{valueToShare}}>
-            {children}
-        </BooksContext.Provider>
-    )
+    fetchBooks,
+  };
+
+  return (
+    <BooksContext.Provider value={ valueToShare }>
+      {children}
+    </BooksContext.Provider>
+  );
 }
-export {Provider}
+export { Provider };
 export default BooksContext;
