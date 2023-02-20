@@ -1,10 +1,9 @@
 import BookShow from "./BookShow";
-import BooksContext from "../context/books";
+// import BooksContext from "../context/books";
 import '../index.css';
-import {useContext, useEffect, useRef} from "react";
-function BookList({books, onDelete, onEdit}) {
+import {useEffect, useRef} from "react";
 
-  const {count, incrementCount} = useContext(BooksContext)
+function BookList({books, onDelete, onEdit}) {
       const msgEndRef = useRef(null);
       useEffect(() => {
         msgEndRef.current?.scrollIntoView({
@@ -18,8 +17,6 @@ function BookList({books, onDelete, onEdit}) {
 
   return (
     <div id="ref" className="book-list">
-      {count}
-      <button onClick={incrementCount}>Click me!</button>
       {renderedBooks}
     </div>
   );

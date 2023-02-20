@@ -9,7 +9,7 @@ function BookCreate({onCreate}) {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        title !== "" ? onCreate(title) && setTitle('') : alert();
+        title !== "" ? onCreate(title) && setTitle('') : alert("Title cant be empty, eg: Harry Potter");
     }
     // useEffect(() => {
     //       const element = document.getElementById("ref")
