@@ -1,15 +1,16 @@
-import { useState } from "react";
-function BookCreate({onCreate}) {
+import { useState, useContext } from "react";
+import BooksContext from "../context/books";
 
+function BookCreate() {
     const [title, setTitle] = useState('');
-
+    const {createBook} = useContext(BooksContext)
     const handleChange = (event) => {
         setTitle(event.target.value)
     }
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        title !== "" ? onCreate(title) && setTitle('') : alert("Title cant be empty, eg: Harry Potter");
+        title !== "" ? createBook(title) && setTitle('') : alert("Title cant be empty, eg: Harry Potter");
     }
     // useEffect(() => {
     //       const element = document.getElementById("ref")

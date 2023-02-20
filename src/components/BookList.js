@@ -1,18 +1,22 @@
 import BookShow from "./BookShow";
-// import BooksContext from "../context/books";
+import useBooksContext from "../hooks/user-books-context";
 import '../index.css';
-import {useEffect, useRef} from "react";
+import {useEffect, useRef } from "react";
 
-function BookList({books, onDelete, onEdit}) {
-      const msgEndRef = useRef(null);
-      useEffect(() => {
-        msgEndRef.current?.scrollIntoView({
-          behavior: "smooth",
-        });
-      }, [books]);
+
+
+function BookList() {
+  const {books} = useBooksContext();
+  const msgEndRef = useRef(null);
+
+    useEffect(() => {
+      msgEndRef.current?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, [books]);
 
   const renderedBooks = books.map((book) => {
-    return <BookShow ref={msgEndRef} onEdit={onEdit} onDelete={onDelete} key={book.id} book={book} />;
+    return <BookShow ref={msgEndRef} key={book.id} book={book} />;
   });
 
   return (
