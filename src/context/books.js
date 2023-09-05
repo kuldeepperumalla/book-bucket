@@ -7,7 +7,7 @@ function Provider({ children }) {
   const [books, setBooks] = useState([]);
 
   const fetchBooks = useCallback(async () => {
-    const response = await axios.get("http://localhost:3001/books");
+    const response = await axios.get("https://book-bucket-server.onrender.com/books");
 
     setBooks(response.data);
   }, []);
@@ -15,7 +15,7 @@ function Provider({ children }) {
   
   
   const editBookById = async (id, newTitle) => {
-    const response = await axios.put(`http://localhost:3001/books/${id}`, {
+    const response = await axios.put(`https://book-bucket-server.onrender.com/books/${id}`, {
       title: newTitle,
     });
 

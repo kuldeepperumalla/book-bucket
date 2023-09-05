@@ -1,9 +1,9 @@
-GET http://localhost:3001/books HTTP/1.1
+GET https://book-bucket-server.onrender.com/books HTTP/1.1
 Content-Type: application/json
 
 ###
 
-POST http://localhost:3001/books HTTP/1.1
+POST https://book-bucket-server.onrender.com/books HTTP/1.1
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3001/books/1 HTTP/1.1
+PUT https://book-bucket-server.onrender.com/books HTTP/1.1
 Content-Type: application/json
 
 {
