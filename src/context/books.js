@@ -32,7 +32,7 @@ function Provider({ children }) {
 
   //   Delete Books
   const deleteBookById = async (id) => {
-    await axios.delete(`http://localhost:3001/books/${id}`);
+    await axios.delete(`https://book-bucket-server.onrender.com/books/${id}`);
     const updatedBooks = books.filter((book) => {
       return book.id !== id;
     });
@@ -41,7 +41,7 @@ function Provider({ children }) {
   //   Create Books
   const createBook = async (title) => {
     // axios request
-    const response = await axios.post("http://localhost:3001/books", {
+    const response = await axios.post("https://book-bucket-server.onrender.com/books", {
       title,
     });
     const updatedBooks = [...books, response.data];
